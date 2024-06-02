@@ -1,41 +1,41 @@
 ﻿
 
-namespace FinalLabProject.Application.FunctionalTests.TodoItems.Commands;
+namespace FinalLabProject.Application.FunctionalTests.Boats.Commands;
 
-using FinalLabProject.Application.TodoItems.Commands.CreateTodoItem;
-using FinalLabProject.Application.TodoItems.Commands.UpdateTodoItem;
-using FinalLabProject.Application.TodoItems.Commands.UpdateTodoItemDetail;
-using FinalLabProject.Application.TodoLists.Commands.CreateTodoList;
+using FinalLabProject.Application.Boats.Commands.CreateBoat;
+using FinalLabProject.Application.Boats.Commands.UpdateBoat;
+using FinalLabProject.Application.Boats.Commands.UpdateBoatDetail;
+using FinalLabProject.Application.Harbours.Commands.CreateHarbour;
 using FinalLabProject.Domain.Entities;
 using FinalLabProject.Domain.Enums;
 using static Testing;
 
-public class UpdateTodoItemDetailTests : BaseTestFixture
+public class UpdateBoatDetailTests : BaseTestFixture
 {
     [Test]
-    public async Task ShouldRequireValidTodoItemId()
+    public async Task ShouldRequireValidBoatId()
     {
-        var command = new UpdateTodoItemCommand { Id = 99, Title = "New Title" };
+        var command = new UpdateBoatCommand { Id = 99, Title = "New Title" };
         await FluentActions.Invoking(() => SendAsync(command)).Should().ThrowAsync<NotFoundException>();
     }
 
     [Test]
-    public async Task ShouldUpdateTodoItem()
+    public async Task ShouldUpdateBoat()
     {
         var userId = await RunAsDefaultUserAsync();
 
-        var listId = await SendAsync(new CreateTodoListCommand
+        var listId = await SendAsync(new CreateHarbourCommand
         {
             Title = "New List"
         });
 
-        var itemId = await SendAsync(new CreateTodoItemCommand
+        var itemId = await SendAsync(new CreateBoatCommand
         {
             ListId = listId,
             Title = "New Item"
         });
 
-        var command = new UpdateTodoItemDetailCommand
+        var command = new UpdateBoatDetailCommand
         {
             Id = itemId,
             ListId = listId,
@@ -45,7 +45,7 @@ public class UpdateTodoItemDetailTests : BaseTestFixture
 
         await SendAsync(command);
 
-        var item = await FindAsync<TodoItem>(itemId);
+        var item = await FindAsync<Boat>(itemId);
 
         item.Should().NotBeNull();
         item!.ListId.Should().Be(command.ListId);

@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace FinalLabProject.Infrastructure.Data.Configurations;
 
-public class TodoItemConfiguration : IEntityTypeConfiguration<TodoItem>
+public class BoatConfiguration : IEntityTypeConfiguration<Boat>
 {
-    public void Configure(EntityTypeBuilder<TodoItem> builder)
+    public void Configure(EntityTypeBuilder<Boat> builder)
     {
         builder.Property(t => t.Title)
             .HasMaxLength(200)

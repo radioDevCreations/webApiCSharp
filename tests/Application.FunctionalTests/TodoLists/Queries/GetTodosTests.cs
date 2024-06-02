@@ -1,8 +1,8 @@
-﻿using FinalLabProject.Application.TodoLists.Queries.GetTodos;
+﻿using FinalLabProject.Application.Harbours.Queries.GetTodos;
 using FinalLabProject.Domain.Entities;
 using FinalLabProject.Domain.ValueObjects;
 
-namespace FinalLabProject.Application.FunctionalTests.TodoLists.Queries;
+namespace FinalLabProject.Application.FunctionalTests.Harbours.Queries;
 
 using static Testing;
 
@@ -25,19 +25,19 @@ public class GetTodosTests : BaseTestFixture
     {
         await RunAsDefaultUserAsync();
 
-        await AddAsync(new TodoList
+        await AddAsync(new Harbour
         {
             Title = "Shopping",
             Colour = Colour.Blue,
             Items =
                     {
-                        new TodoItem { Title = "Apples", Done = true },
-                        new TodoItem { Title = "Milk", Done = true },
-                        new TodoItem { Title = "Bread", Done = true },
-                        new TodoItem { Title = "Toilet paper" },
-                        new TodoItem { Title = "Pasta" },
-                        new TodoItem { Title = "Tissues" },
-                        new TodoItem { Title = "Tuna" }
+                        new Boat { Title = "Apples", Done = true },
+                        new Boat { Title = "Milk", Done = true },
+                        new Boat { Title = "Bread", Done = true },
+                        new Boat { Title = "Toilet paper" },
+                        new Boat { Title = "Pasta" },
+                        new Boat { Title = "Tissues" },
+                        new Boat { Title = "Tuna" }
                     }
         });
 

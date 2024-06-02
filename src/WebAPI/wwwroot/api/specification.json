@@ -6,12 +6,12 @@
     "version": "1.0.0"
   },
   "paths": {
-    "/api/TodoItems": {
+    "/api/Boats": {
       "get": {
         "tags": [
-          "TodoItems"
+          "Boats"
         ],
-        "operationId": "GetTodoItemsWithPagination",
+        "operationId": "GetBoatsWithPagination",
         "parameters": [
           {
             "name": "ListId",
@@ -50,7 +50,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PaginatedListOfTodoItemBriefDto"
+                  "$ref": "#/components/schemas/PaginatedListOfBoatBriefDto"
                 }
               }
             }
@@ -64,15 +64,15 @@
       },
       "post": {
         "tags": [
-          "TodoItems"
+          "Boats"
         ],
-        "operationId": "CreateTodoItem",
+        "operationId": "CreateBoat",
         "requestBody": {
           "x-name": "command",
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CreateTodoItemCommand"
+                "$ref": "#/components/schemas/CreateBoatCommand"
               }
             }
           },
@@ -99,12 +99,12 @@
         ]
       }
     },
-    "/api/TodoItems/{id}": {
+    "/api/Boats/{id}": {
       "put": {
         "tags": [
-          "TodoItems"
+          "Boats"
         ],
-        "operationId": "UpdateTodoItem",
+        "operationId": "UpdateBoat",
         "parameters": [
           {
             "name": "id",
@@ -122,7 +122,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UpdateTodoItemCommand"
+                "$ref": "#/components/schemas/UpdateBoatCommand"
               }
             }
           },
@@ -142,9 +142,9 @@
       },
       "delete": {
         "tags": [
-          "TodoItems"
+          "Boats"
         ],
-        "operationId": "DeleteTodoItem",
+        "operationId": "DeleteBoat",
         "parameters": [
           {
             "name": "id",
@@ -169,12 +169,12 @@
         ]
       }
     },
-    "/api/TodoItems/UpdateDetail/{id}": {
+    "/api/Boats/UpdateDetail/{id}": {
       "put": {
         "tags": [
-          "TodoItems"
+          "Boats"
         ],
-        "operationId": "UpdateTodoItemDetail",
+        "operationId": "UpdateBoatDetail",
         "parameters": [
           {
             "name": "id",
@@ -192,7 +192,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UpdateTodoItemDetailCommand"
+                "$ref": "#/components/schemas/UpdateBoatDetailCommand"
               }
             }
           },
@@ -211,12 +211,12 @@
         ]
       }
     },
-    "/api/TodoLists": {
+    "/api/Harbours": {
       "get": {
         "tags": [
-          "TodoLists"
+          "Harbours"
         ],
-        "operationId": "GetTodoLists",
+        "operationId": "GetHarbours",
         "responses": {
           "200": {
             "description": "",
@@ -237,15 +237,15 @@
       },
       "post": {
         "tags": [
-          "TodoLists"
+          "Harbours"
         ],
-        "operationId": "CreateTodoList",
+        "operationId": "CreateHarbour",
         "requestBody": {
           "x-name": "command",
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CreateTodoListCommand"
+                "$ref": "#/components/schemas/CreateHarbourCommand"
               }
             }
           },
@@ -272,12 +272,12 @@
         ]
       }
     },
-    "/api/TodoLists/{id}": {
+    "/api/Harbours/{id}": {
       "put": {
         "tags": [
-          "TodoLists"
+          "Harbours"
         ],
-        "operationId": "UpdateTodoList",
+        "operationId": "UpdateHarbour",
         "parameters": [
           {
             "name": "id",
@@ -295,7 +295,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UpdateTodoListCommand"
+                "$ref": "#/components/schemas/UpdateHarbourCommand"
               }
             }
           },
@@ -315,9 +315,9 @@
       },
       "delete": {
         "tags": [
-          "TodoLists"
+          "Harbours"
         ],
-        "operationId": "DeleteTodoList",
+        "operationId": "DeleteHarbour",
         "parameters": [
           {
             "name": "id",
@@ -757,14 +757,14 @@
   },
   "components": {
     "schemas": {
-      "PaginatedListOfTodoItemBriefDto": {
+      "PaginatedListOfBoatBriefDto": {
         "type": "object",
         "additionalProperties": false,
         "properties": {
           "items": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/TodoItemBriefDto"
+              "$ref": "#/components/schemas/BoatBriefDto"
             }
           },
           "pageNumber": {
@@ -787,7 +787,7 @@
           }
         }
       },
-      "TodoItemBriefDto": {
+      "BoatBriefDto": {
         "type": "object",
         "additionalProperties": false,
         "properties": {
@@ -808,7 +808,7 @@
           }
         }
       },
-      "CreateTodoItemCommand": {
+      "CreateBoatCommand": {
         "type": "object",
         "additionalProperties": false,
         "properties": {
@@ -822,7 +822,7 @@
           }
         }
       },
-      "UpdateTodoItemCommand": {
+      "UpdateBoatCommand": {
         "type": "object",
         "additionalProperties": false,
         "properties": {
@@ -839,7 +839,7 @@
           }
         }
       },
-      "UpdateTodoItemDetailCommand": {
+      "UpdateBoatDetailCommand": {
         "type": "object",
         "additionalProperties": false,
         "properties": {
@@ -889,7 +889,7 @@
           "lists": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/TodoListDto"
+              "$ref": "#/components/schemas/HarbourDto"
             }
           }
         }
@@ -908,7 +908,7 @@
           }
         }
       },
-      "TodoListDto": {
+      "HarbourDto": {
         "type": "object",
         "additionalProperties": false,
         "properties": {
@@ -927,12 +927,12 @@
           "items": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/TodoItemDto"
+              "$ref": "#/components/schemas/BoatDto"
             }
           }
         }
       },
-      "TodoItemDto": {
+      "BoatDto": {
         "type": "object",
         "additionalProperties": false,
         "properties": {
@@ -961,7 +961,7 @@
           }
         }
       },
-      "CreateTodoListCommand": {
+      "CreateHarbourCommand": {
         "type": "object",
         "additionalProperties": false,
         "properties": {
@@ -971,7 +971,7 @@
           }
         }
       },
-      "UpdateTodoListCommand": {
+      "UpdateHarbourCommand": {
         "type": "object",
         "additionalProperties": false,
         "properties": {

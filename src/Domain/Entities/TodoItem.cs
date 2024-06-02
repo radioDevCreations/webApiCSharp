@@ -1,6 +1,6 @@
 ﻿namespace FinalLabProject.Domain.Entities;
 
-public class TodoItem : BaseAuditableEntity
+public class Boat : BaseAuditableEntity
 {
     public int ListId { get; set; }
 
@@ -20,12 +20,12 @@ public class TodoItem : BaseAuditableEntity
         {
             if (value && !_done)
             {
-                AddDomainEvent(new TodoItemCompletedEvent(this));
+                AddDomainEvent(new BoatCompletedEvent(this));
             }
 
             _done = value;
         }
     }
 
-    public TodoList List { get; set; } = null!;
+    public Harbour List { get; set; } = null!;
 }

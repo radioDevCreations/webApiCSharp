@@ -1,10 +1,10 @@
 ﻿using System.Reflection;
 using System.Runtime.CompilerServices;
 using AutoMapper;
+using FinalLabProject.Application.Boats.Queries.GetBoatsWithPagination;
 using FinalLabProject.Application.Common.Interfaces;
 using FinalLabProject.Application.Common.Models;
-using FinalLabProject.Application.TodoItems.Queries.GetTodoItemsWithPagination;
-using FinalLabProject.Application.TodoLists.Queries.GetTodos;
+using FinalLabProject.Application.Harbours.Queries.GetTodos;
 using FinalLabProject.Domain.Entities;
 using NUnit.Framework;
 
@@ -30,11 +30,11 @@ public class MappingTests
     }
 
     [Test]
-    [TestCase(typeof(TodoList), typeof(TodoListDto))]
-    [TestCase(typeof(TodoItem), typeof(TodoItemDto))]
-    [TestCase(typeof(TodoList), typeof(LookupDto))]
-    [TestCase(typeof(TodoItem), typeof(LookupDto))]
-    [TestCase(typeof(TodoItem), typeof(TodoItemBriefDto))]
+    [TestCase(typeof(Harbour), typeof(HarbourDto))]
+    [TestCase(typeof(Boat), typeof(BoatDto))]
+    [TestCase(typeof(Harbour), typeof(LookupDto))]
+    [TestCase(typeof(Boat), typeof(LookupDto))]
+    [TestCase(typeof(Boat), typeof(BoatBriefDto))]
     public void ShouldSupportMappingFromSourceToDestination(Type source, Type destination)
     {
         var instance = GetInstanceOf(source);

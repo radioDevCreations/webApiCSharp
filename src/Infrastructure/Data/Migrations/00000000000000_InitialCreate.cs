@@ -51,7 +51,7 @@ namespace FinalLabProject.Infrastructure.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "TodoLists",
+                name: "Harbours",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -65,7 +65,7 @@ namespace FinalLabProject.Infrastructure.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_TodoLists", x => x.Id);
+                    table.PrimaryKey("PK_Harbours", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -175,7 +175,7 @@ namespace FinalLabProject.Infrastructure.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "TodoItems",
+                name: "Boats",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -193,11 +193,11 @@ namespace FinalLabProject.Infrastructure.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_TodoItems", x => x.Id);
+                    table.PrimaryKey("PK_Boats", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_TodoItems_TodoLists_ListId",
+                        name: "FK_Boats_Harbours_ListId",
                         column: x => x.ListId,
-                        principalTable: "TodoLists",
+                        principalTable: "Harbours",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -242,8 +242,8 @@ namespace FinalLabProject.Infrastructure.Data.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_TodoItems_ListId",
-                table: "TodoItems",
+                name: "IX_Boats_ListId",
+                table: "Boats",
                 column: "ListId");
         }
 
@@ -266,7 +266,7 @@ namespace FinalLabProject.Infrastructure.Data.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "TodoItems");
+                name: "Boats");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
@@ -275,7 +275,7 @@ namespace FinalLabProject.Infrastructure.Data.Migrations
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
-                name: "TodoLists");
+                name: "Harbours");
         }
     }
 }

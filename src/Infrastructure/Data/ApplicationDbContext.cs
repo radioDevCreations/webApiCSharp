@@ -11,9 +11,9 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>, IApplica
 {
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 
-    public DbSet<TodoList> TodoLists => Set<TodoList>();
+    public DbSet<Harbour> Harbours => Set<Harbour>();
 
-    public DbSet<TodoItem> TodoItems => Set<TodoItem>();
+    public DbSet<Boat> Boats => Set<Boat>();
 
     protected override void OnModelCreating(ModelBuilder builder)
     {

@@ -25,7 +25,7 @@ namespace FinalLabProject.Infrastructure.Data.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("FinalLabProject.Domain.Entities.TodoItem", b =>
+            modelBuilder.Entity("FinalLabProject.Domain.Entities.Boat", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -69,10 +69,10 @@ namespace FinalLabProject.Infrastructure.Data.Migrations
 
                     b.HasIndex("ListId");
 
-                    b.ToTable("TodoItems");
+                    b.ToTable("Boats");
                 });
 
-            modelBuilder.Entity("FinalLabProject.Domain.Entities.TodoList", b =>
+            modelBuilder.Entity("FinalLabProject.Domain.Entities.Harbour", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -99,7 +99,7 @@ namespace FinalLabProject.Infrastructure.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("TodoLists");
+                    b.ToTable("Harbours");
                 });
 
             modelBuilder.Entity("FinalLabProject.Infrastructure.Identity.ApplicationUser", b =>
@@ -304,9 +304,9 @@ namespace FinalLabProject.Infrastructure.Data.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("FinalLabProject.Domain.Entities.TodoItem", b =>
+            modelBuilder.Entity("FinalLabProject.Domain.Entities.Boat", b =>
                 {
-                    b.HasOne("FinalLabProject.Domain.Entities.TodoList", "List")
+                    b.HasOne("FinalLabProject.Domain.Entities.Harbour", "List")
                         .WithMany("Items")
                         .HasForeignKey("ListId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -315,23 +315,23 @@ namespace FinalLabProject.Infrastructure.Data.Migrations
                     b.Navigation("List");
                 });
 
-            modelBuilder.Entity("FinalLabProject.Domain.Entities.TodoList", b =>
+            modelBuilder.Entity("FinalLabProject.Domain.Entities.Harbour", b =>
                 {
                     b.OwnsOne("FinalLabProject.Domain.ValueObjects.Colour", "Colour", b1 =>
                         {
-                            b1.Property<int>("TodoListId")
+                            b1.Property<int>("HarbourId")
                                 .HasColumnType("int");
 
                             b1.Property<string>("Code")
                                 .IsRequired()
                                 .HasColumnType("nvarchar(max)");
 
-                            b1.HasKey("TodoListId");
+                            b1.HasKey("HarbourId");
 
-                            b1.ToTable("TodoLists");
+                            b1.ToTable("Harbours");
 
                             b1.WithOwner()
-                                .HasForeignKey("TodoListId");
+                                .HasForeignKey("HarbourId");
                         });
 
                     b.Navigation("Colour")
@@ -389,7 +389,7 @@ namespace FinalLabProject.Infrastructure.Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("FinalLabProject.Domain.Entities.TodoList", b =>
+            modelBuilder.Entity("FinalLabProject.Domain.Entities.Harbour", b =>
                 {
                     b.Navigation("Items");
                 });

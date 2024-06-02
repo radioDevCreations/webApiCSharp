@@ -1,34 +1,34 @@
 ﻿using FinalLabProject.Application.Common.Exceptions;
-using FinalLabProject.Application.TodoItems.Commands.CreateTodoItem;
-using FinalLabProject.Application.TodoLists.Commands.CreateTodoList;
+using FinalLabProject.Application.Boats.Commands.CreateBoat;
+using FinalLabProject.Application.Harbours.Commands.CreateHarbour;
 using FinalLabProject.Domain.Entities;
 
-namespace FinalLabProject.Application.FunctionalTests.TodoItems.Commands;
+namespace FinalLabProject.Application.FunctionalTests.Boats.Commands;
 
 using static Testing;
 
-public class CreateTodoItemTests : BaseTestFixture
+public class CreateBoatTests : BaseTestFixture
 {
     [Test]
     public async Task ShouldRequireMinimumFields()
     {
-        var command = new CreateTodoItemCommand();
+        var command = new CreateBoatCommand();
 
         await FluentActions.Invoking(() =>
             SendAsync(command)).Should().ThrowAsync<ValidationException>();
     }
 
     [Test]
-    public async Task ShouldCreateTodoItem()
+    public async Task ShouldCreateBoat()
     {
         var userId = await RunAsDefaultUserAsync();
 
-        var listId = await SendAsync(new CreateTodoListCommand
+        var listId = await SendAsync(new CreateHarbourCommand
         {
             Title = "New List"
         });
 
-        var command = new CreateTodoItemCommand
+        var command = new CreateBoatCommand
         {
             ListId = listId,
             Title = "Tasks"
@@ -36,7 +36,7 @@ public class CreateTodoItemTests : BaseTestFixture
 
         var itemId = await SendAsync(command);
 
-        var item = await FindAsync<TodoItem>(itemId);
+        var item = await FindAsync<Boat>(itemId);
 
         item.Should().NotBeNull();
         item!.ListId.Should().Be(command.ListId);

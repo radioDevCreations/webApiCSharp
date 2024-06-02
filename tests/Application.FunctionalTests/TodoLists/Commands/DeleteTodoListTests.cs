@@ -1,31 +1,31 @@
-﻿using FinalLabProject.Application.TodoLists.Commands.CreateTodoList;
-using FinalLabProject.Application.TodoLists.Commands.DeleteTodoList;
+﻿using FinalLabProject.Application.Harbours.Commands.CreateHarbour;
+using FinalLabProject.Application.Harbours.Commands.DeleteHarbour;
 using FinalLabProject.Domain.Entities;
 
-namespace FinalLabProject.Application.FunctionalTests.TodoLists.Commands;
+namespace FinalLabProject.Application.FunctionalTests.Harbours.Commands;
 
 using static Testing;
 
-public class DeleteTodoListTests : BaseTestFixture
+public class DeleteHarbourTests : BaseTestFixture
 {
     [Test]
-    public async Task ShouldRequireValidTodoListId()
+    public async Task ShouldRequireValidHarbourId()
     {
-        var command = new DeleteTodoListCommand(99);
+        var command = new DeleteHarbourCommand(99);
         await FluentActions.Invoking(() => SendAsync(command)).Should().ThrowAsync<NotFoundException>();
     }
 
     [Test]
-    public async Task ShouldDeleteTodoList()
+    public async Task ShouldDeleteHarbour()
     {
-        var listId = await SendAsync(new CreateTodoListCommand
+        var listId = await SendAsync(new CreateHarbourCommand
         {
             Title = "New List"
         });
 
-        await SendAsync(new DeleteTodoListCommand(listId));
+        await SendAsync(new DeleteHarbourCommand(listId));
 
-        var list = await FindAsync<TodoList>(listId);
+        var list = await FindAsync<Harbour>(listId);
 
         list.Should().BeNull();
     }

@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace FinalLabProject.Infrastructure.Data.Configurations;
 
-public class TodoListConfiguration : IEntityTypeConfiguration<TodoList>
+public class HarbourConfiguration : IEntityTypeConfiguration<Harbour>
 {
-    public void Configure(EntityTypeBuilder<TodoList> builder)
+    public void Configure(EntityTypeBuilder<Harbour> builder)
     {
         builder.Property(t => t.Title)
             .HasMaxLength(200)

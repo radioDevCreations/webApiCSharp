@@ -4,9 +4,9 @@ namespace FinalLabProject.Application.Common.Interfaces;
 
 public interface IApplicationDbContext
 {
-    DbSet<TodoList> TodoLists { get; }
+    DbSet<Harbour> Harbours { get; }
 
-    DbSet<TodoItem> TodoItems { get; }
+    DbSet<Boat> Boats { get; }
 
     Task<int> SaveChangesAsync(CancellationToken cancellationToken);
 }

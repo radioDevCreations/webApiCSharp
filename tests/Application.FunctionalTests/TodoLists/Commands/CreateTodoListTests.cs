@@ -1,29 +1,29 @@
 ﻿using FinalLabProject.Application.Common.Exceptions;
-using FinalLabProject.Application.TodoLists.Commands.CreateTodoList;
+using FinalLabProject.Application.Harbours.Commands.CreateHarbour;
 using FinalLabProject.Domain.Entities;
 
-namespace FinalLabProject.Application.FunctionalTests.TodoLists.Commands;
+namespace FinalLabProject.Application.FunctionalTests.Harbours.Commands;
 
 using static Testing;
 
-public class CreateTodoListTests : BaseTestFixture
+public class CreateHarbourTests : BaseTestFixture
 {
     [Test]
     public async Task ShouldRequireMinimumFields()
     {
-        var command = new CreateTodoListCommand();
+        var command = new CreateHarbourCommand();
         await FluentActions.Invoking(() => SendAsync(command)).Should().ThrowAsync<ValidationException>();
     }
 
     [Test]
     public async Task ShouldRequireUniqueTitle()
     {
-        await SendAsync(new CreateTodoListCommand
+        await SendAsync(new CreateHarbourCommand
         {
             Title = "Shopping"
         });
 
-        var command = new CreateTodoListCommand
+        var command = new CreateHarbourCommand
         {
             Title = "Shopping"
         };
@@ -33,18 +33,18 @@ public class CreateTodoListTests : BaseTestFixture
     }
 
     [Test]
-    public async Task ShouldCreateTodoList()
+    public async Task ShouldCreateHarbour()
     {
         var userId = await RunAsDefaultUserAsync();
 
-        var command = new CreateTodoListCommand
+        var command = new CreateHarbourCommand
         {
             Title = "Tasks"
         };
 
         var id = await SendAsync(command);
 
-        var list = await FindAsync<TodoList>(id);
+        var list = await FindAsync<Harbour>(id);
 
         list.Should().NotBeNull();
         list!.Title.Should().Be(command.Title);

@@ -1,19 +1,19 @@
 ﻿using FinalLabProject.Application.Common.Exceptions;
 using FinalLabProject.Application.Common.Security;
-using FinalLabProject.Application.TodoLists.Commands.CreateTodoList;
-using FinalLabProject.Application.TodoLists.Commands.PurgeTodoLists;
+using FinalLabProject.Application.Harbours.Commands.CreateHarbour;
+using FinalLabProject.Application.Harbours.Commands.PurgeHarbours;
 using FinalLabProject.Domain.Entities;
 
-namespace FinalLabProject.Application.FunctionalTests.TodoLists.Commands;
+namespace FinalLabProject.Application.FunctionalTests.Harbours.Commands;
 
 using static Testing;
 
-public class PurgeTodoListsTests : BaseTestFixture
+public class PurgeHarboursTests : BaseTestFixture
 {
     [Test]
     public async Task ShouldDenyAnonymousUser()
     {
-        var command = new PurgeTodoListsCommand();
+        var command = new PurgeHarboursCommand();
 
         command.GetType().Should().BeDecoratedWith<AuthorizeAttribute>();
 
@@ -27,7 +27,7 @@ public class PurgeTodoListsTests : BaseTestFixture
     {
         await RunAsDefaultUserAsync();
 
-        var command = new PurgeTodoListsCommand();
+        var command = new PurgeHarboursCommand();
 
         var action = () => SendAsync(command);
 
@@ -39,7 +39,7 @@ public class PurgeTodoListsTests : BaseTestFixture
     {
         await RunAsAdministratorAsync();
 
-        var command = new PurgeTodoListsCommand();
+        var command = new PurgeHarboursCommand();
 
         var action = () => SendAsync(command);
 
@@ -51,24 +51,24 @@ public class PurgeTodoListsTests : BaseTestFixture
     {
         await RunAsAdministratorAsync();
 
-        await SendAsync(new CreateTodoListCommand
+        await SendAsync(new CreateHarbourCommand
         {
             Title = "New List #1"
         });
 
-        await SendAsync(new CreateTodoListCommand
+        await SendAsync(new CreateHarbourCommand
         {
             Title = "New List #2"
         });
 
-        await SendAsync(new CreateTodoListCommand
+        await SendAsync(new CreateHarbourCommand
         {
             Title = "New List #3"
         });
 
-        await SendAsync(new PurgeTodoListsCommand());
+        await SendAsync(new PurgeHarboursCommand());
 
-        var count = await CountAsync<TodoList>();
+        var count = await CountAsync<Harbour>();
 
         count.Should().Be(0);
     }

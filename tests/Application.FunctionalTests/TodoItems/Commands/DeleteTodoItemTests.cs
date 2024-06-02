@@ -1,40 +1,40 @@
-﻿using FinalLabProject.Application.TodoItems.Commands.CreateTodoItem;
-using FinalLabProject.Application.TodoItems.Commands.DeleteTodoItem;
-using FinalLabProject.Application.TodoLists.Commands.CreateTodoList;
+﻿using FinalLabProject.Application.Boats.Commands.CreateBoat;
+using FinalLabProject.Application.Boats.Commands.DeleteBoat;
+using FinalLabProject.Application.Harbours.Commands.CreateHarbour;
 using FinalLabProject.Domain.Entities;
 
-namespace FinalLabProject.Application.FunctionalTests.TodoItems.Commands;
+namespace FinalLabProject.Application.FunctionalTests.Boats.Commands;
 
 using static Testing;
 
-public class DeleteTodoItemTests : BaseTestFixture
+public class DeleteBoatTests : BaseTestFixture
 {
     [Test]
-    public async Task ShouldRequireValidTodoItemId()
+    public async Task ShouldRequireValidBoatId()
     {
-        var command = new DeleteTodoItemCommand(99);
+        var command = new DeleteBoatCommand(99);
 
         await FluentActions.Invoking(() =>
             SendAsync(command)).Should().ThrowAsync<NotFoundException>();
     }
 
     [Test]
-    public async Task ShouldDeleteTodoItem()
+    public async Task ShouldDeleteBoat()
     {
-        var listId = await SendAsync(new CreateTodoListCommand
+        var listId = await SendAsync(new CreateHarbourCommand
         {
             Title = "New List"
         });
 
-        var itemId = await SendAsync(new CreateTodoItemCommand
+        var itemId = await SendAsync(new CreateBoatCommand
         {
             ListId = listId,
             Title = "New Item"
         });
 
-        await SendAsync(new DeleteTodoItemCommand(itemId));
+        await SendAsync(new DeleteBoatCommand(itemId));
 
-        var item = await FindAsync<TodoItem>(itemId);
+        var item = await FindAsync<Boat>(itemId);
 
         item.Should().BeNull();
     }

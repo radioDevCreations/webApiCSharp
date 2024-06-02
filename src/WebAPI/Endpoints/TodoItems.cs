@@ -1,52 +1,52 @@
-﻿using FinalLabProject.Application.Common.Models;
-using FinalLabProject.Application.TodoItems.Commands.CreateTodoItem;
-using FinalLabProject.Application.TodoItems.Commands.DeleteTodoItem;
-using FinalLabProject.Application.TodoItems.Commands.UpdateTodoItem;
-using FinalLabProject.Application.TodoItems.Commands.UpdateTodoItemDetail;
-using FinalLabProject.Application.TodoItems.Queries.GetTodoItemsWithPagination;
+﻿using FinalLabProject.Application.Boats.Commands.CreateBoat;
+using FinalLabProject.Application.Boats.Commands.UpdateBoat;
+using FinalLabProject.Application.Boats.Commands.UpdateBoatDetail;
+using FinalLabProject.Application.Boats.Queries.GetBoatsWithPagination;
+using FinalLabProject.Application.Common.Models;
+using FinalLabProject.Application.Boats.Commands.DeleteBoat;
 
 namespace FinalLabProject.Web.Endpoints;
 
-public class TodoItems : EndpointGroupBase
+public class Boats : EndpointGroupBase
 {
     public override void Map(WebApplication app)
     {
         app.MapGroup(this)
             .RequireAuthorization()
-            .MapGet(GetTodoItemsWithPagination)
-            .MapPost(CreateTodoItem)
-            .MapPut(UpdateTodoItem, "{id}")
-            .MapPut(UpdateTodoItemDetail, "UpdateDetail/{id}")
-            .MapDelete(DeleteTodoItem, "{id}");
+            .MapGet(GetBoatsWithPagination)
+            .MapPost(CreateBoat)
+            .MapPut(UpdateBoat, "{id}")
+            .MapPut(UpdateBoatDetail, "UpdateDetail/{id}")
+            .MapDelete(DeleteBoat, "{id}");
     }
 
-    public Task<PaginatedList<TodoItemBriefDto>> GetTodoItemsWithPagination(ISender sender, [AsParameters] GetTodoItemsWithPaginationQuery query)
+    public Task<PaginatedList<BoatBriefDto>> GetBoatsWithPagination(ISender sender, [AsParameters] GetBoatsWithPaginationQuery query)
     {
         return sender.Send(query);
     }
 
-    public Task<int> CreateTodoItem(ISender sender, CreateTodoItemCommand command)
+    public Task<int> CreateBoat(ISender sender, CreateBoatCommand command)
     {
         return sender.Send(command);
     }
 
-    public async Task<IResult> UpdateTodoItem(ISender sender, int id, UpdateTodoItemCommand command)
+    public async Task<IResult> UpdateBoat(ISender sender, int id, UpdateBoatCommand command)
     {
         if (id != command.Id) return Results.BadRequest();
         await sender.Send(command);
         return Results.NoContent();
     }
 
-    public async Task<IResult> UpdateTodoItemDetail(ISender sender, int id, UpdateTodoItemDetailCommand command)
+    public async Task<IResult> UpdateBoatDetail(ISender sender, int id, UpdateBoatDetailCommand command)
     {
         if (id != command.Id) return Results.BadRequest();
         await sender.Send(command);
         return Results.NoContent();
     }
 
-    public async Task<IResult> DeleteTodoItem(ISender sender, int id)
+    public async Task<IResult> DeleteBoat(ISender sender, int id)
     {
-        await sender.Send(new DeleteTodoItemCommand(id));
+        await sender.Send(new DeleteBoatCommand(id));
         return Results.NoContent();
     }
 }

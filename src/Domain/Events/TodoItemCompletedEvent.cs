@@ -1,11 +1,11 @@
 ﻿namespace FinalLabProject.Domain.Events;
 
-public class TodoItemCompletedEvent : BaseEvent
+public class BoatCompletedEvent : BaseEvent
 {
-    public TodoItemCompletedEvent(TodoItem item)
+    public BoatCompletedEvent(Boat item)
     {
         Item = item;
     }
 
-    public TodoItem Item { get; }
+    public Boat Item { get; }
 }

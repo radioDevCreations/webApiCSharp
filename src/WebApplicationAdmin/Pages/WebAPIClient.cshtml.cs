@@ -1,4 +1,4 @@
-﻿using FinalLabProject.Application.TodoLists.Queries.GetTodos;
+﻿using FinalLabProject.Application.Harbours.Queries.GetTodos;
 using FinalLabProject.Domain.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.BearerToken;
@@ -16,7 +16,7 @@ namespace WebApplicationAdmin.Pages
     {
         private readonly ILogger<GrpcClientModel> _logger;
         private readonly IOptions<WebAPIConfig> _webAPIconfig;
-        private readonly string TodoListUrl = "TodoLists";
+        private readonly string HarbourUrl = "Harbours";
         private readonly string UsersUrl = "Users";
         private string? _token { get; set; }
         public string? ResultMessage = string.Empty;
@@ -59,7 +59,7 @@ namespace WebApplicationAdmin.Pages
 
                 };
                 var client3 = new RestClient(options);
-                var request3 = new RestRequest($"api/{this.TodoListUrl}", Method.Get);
+                var request3 = new RestRequest($"api/{this.HarbourUrl}", Method.Get);
                 request3.AddHeader("content-type", "application/json");
                 var response3 = client3.Execute<TodosVm>(request3);
 

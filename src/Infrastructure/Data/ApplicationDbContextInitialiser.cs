@@ -89,17 +89,17 @@ public class ApplicationDbContextInitialiser
 
         // Default data
         // Seed, if necessary
-        if (!_context.TodoLists.Any())
+        if (!_context.Harbours.Any())
         {
-            _context.TodoLists.Add(new TodoList
+            _context.Harbours.Add(new Harbour
             {
                 Title = "Todo List",
                 Items =
                 {
-                    new TodoItem { Title = "Make a todo list 📃" },
-                    new TodoItem { Title = "Check off the first item ✅" },
-                    new TodoItem { Title = "Realise you've already done two things on the list! 🤯"},
-                    new TodoItem { Title = "Reward yourself with a nice, long nap 🏆" },
+                    new Boat { Title = "Make a todo list 📃" },
+                    new Boat { Title = "Check off the first item ✅" },
+                    new Boat { Title = "Realise you've already done two things on the list! 🤯"},
+                    new Boat { Title = "Reward yourself with a nice, long nap 🏆" },
                 }
             });
 
